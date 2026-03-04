@@ -1,4 +1,4 @@
-=== AI Markdown Content Negotiator ===
+=== Wpadami Markdown Content Negotiator for LLMs ===
 Contributors: kaisercrazy
 Donate link: https://github.com/serkanalgur
 Tags: markdown, ai, content negotiation, gutenberg, caching
@@ -13,7 +13,7 @@ Detects Accept: text/markdown and serves pre-generated Markdown versions of post
 
 == Description ==
 
-AI Markdown Content Negotiator is a performance-optimized WordPress plugin designed to serve your website's content in a format that AI agents and LLMs (Large Language Models) love: Clean Markdown.
+Wpadami Markdown Content Negotiator for LLMs is a performance-optimized WordPress plugin designed to serve your website's content in a format that AI agents and LLMs (Large Language Models) love: Clean Markdown.
 
 Using standard HTTP Content Negotiation, the plugin detects when a request is made with the `Accept: text/markdown` header. Instead of serving the standard HTML theme, it returns a Markdown version of the post or page, complete with YAML Frontmatter, token estimation headers, and customizable content signals.
 
@@ -30,7 +30,7 @@ To ensure maximum performance and minimal server load, Markdown versions are pre
 
 == Installation ==
 
-1. Upload the `sa-ai-markdown` folder to the `/wp-content/plugins/` directory.
+1. Upload the `wpadami-markdown-negotiator` folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Configure your preferences under 'Settings > AI Markdown'.
 
@@ -51,6 +51,9 @@ We use a standard heuristic of ~4 characters per token to provide an estimate in
 1. The AI Markdown settings page.
 
 == Changelog ==
+
+= 1.0.5 = 
+* Name Change & Refactor plugin
 
 = 1.0.4 =
 * Security: Implemented Late Escaping for all echoed variables and generated data.

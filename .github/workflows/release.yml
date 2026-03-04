@@ -16,7 +16,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: "8.1"
 
       - name: Install Dependencies
         run: composer install --no-dev --optimize-autoloader
@@ -25,21 +25,20 @@ jobs:
         run: |
           rm -rf .git .github tests composer.lock phpunit.xml .gitignore
           # Remove other development files if any
-        
+
       - name: Get tag version
         id: vars
         run: echo "tag=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
 
       - name: ZIP plugin
         run: |
-          mkdir sa-ai-markdown
+          mkdir wpadami-markdown-negotiator
           shopt -s dotglob
-          mv * sa-ai-markdown/ 2>/dev/null || true
-          zip -r "sa-ai-markdown-${{ steps.vars.outputs.tag }}.zip" sa-ai-markdown/
-
+          mv * wpadami-markdown-negotiator/ 2>/dev/null || true
+          zip -r "wpadami-markdown-negotiator-${{ steps.vars.outputs.tag }}.zip" wpadami-markdown-negotiator/
 
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "sa-ai-markdown-${{ steps.vars.outputs.tag }}.zip"
+          artifacts: "wpadami-markdown-negotiator-${{ steps.vars.outputs.tag }}.zip"
           token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,5 +1,5 @@
 {
-    "name": "serkanalgur/sa-ai-markdown",
+    "name": "serkanalgur/wpadami-markdown-negotiator",
     "description": "Detects Accept: text/markdown and serves pre-generated Markdown versions of posts/pages for AI agents.",
     "type": "wordpress-plugin",
     "license": "GPL-2.0-or-later",

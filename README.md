@@ -1,8 +1,8 @@
-[![WordPress](https://img.shields.io/badge/WordPress-%2321759B.svg?logo=wordpress&logoColor=white)](#) ![Packagist Version](https://img.shields.io/packagist/v/serkanalgur/sa-ai-markdown) [![PHP](https://img.shields.io/badge/php-%23777BB4.svg?&logo=php&logoColor=white)](#) ![GitHub Release](https://img.shields.io/github/v/release/serkanalgur/sa-ai-markdown) ![GitHub License](https://img.shields.io/github/license/serkanalgur/sa-ai-markdown)
+[![WordPress](https://img.shields.io/badge/WordPress-%2321759B.svg?logo=wordpress&logoColor=white)](#) ![Packagist Version](https://img.shields.io/packagist/v/serkanalgur/wpadami-markdown-negotiator) [![PHP](https://img.shields.io/badge/php-%23777BB4.svg?&logo=php&logoColor=white)](#) ![GitHub Release](https://img.shields.io/github/v/release/serkanalgur/wpadami-markdown-negotiator) ![GitHub License](https://img.shields.io/github/license/serkanalgur/wpadami-markdown-negotiator)
 
 
 ![Logo](assets/icon-256.png)
-## AI Markdown Content Negotiator
+## Wpadami Markdown Content Negotiator for LLMs
 
 A WordPress plugin that detects when a request is made for content in Markdown format (via the `Accept: text/markdown` header) and serves a clean, pre-generated Markdown version of the page instead of HTML.
 
@@ -61,6 +61,9 @@ Available under **Settings > AI Markdown**:
 ![Settings Page Screenshot](screenshot.png)
 
 ## Changelog
+
+### 1.0.5 
+* Name Change & Refactor plugin
 
 ### 1.0.4
 * Security: Implemented Late Escaping for all echoed variables and generated data.

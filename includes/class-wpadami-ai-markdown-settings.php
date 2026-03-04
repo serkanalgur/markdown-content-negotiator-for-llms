@@ -2,7 +2,7 @@
 /**
  * Settings for AI Markdown.
  *
- * @package SA_AI_Markdown
+ * @package WPADAMI_AI_Markdown
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,12 +10,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Class SA_AI_Markdown_Settings
+ * Class WPADAMI_AI_Markdown_Settings
  *
  * Handles the administration settings page and option registration.
  */
-class SA_AI_Markdown_Settings {
-
+class WPADAMI_AI_Markdown_Settings {
 
 	/**
 	 * Constructor.
@@ -33,7 +32,7 @@ class SA_AI_Markdown_Settings {
 			'AI Markdown Settings',
 			'AI Markdown',
 			'manage_options',
-			'sa-ai-markdown',
+			'wpadami-markdown-negotiator',
 			array( $this, 'render_settings_page' )
 		);
 	}
@@ -42,13 +41,13 @@ class SA_AI_Markdown_Settings {
 	 * Register plugin settings.
 	 */
 	public function register_settings() {
-		register_setting( 'sa_ai_markdown_settings', 'sa_ai_markdown_post_types', array( 'sanitize_callback' => array( $this, 'sanitize_post_types' ) ) );
-		register_setting( 'sa_ai_markdown_settings', 'sa_ai_markdown_content_signal', array( 'sanitize_callback' => 'sanitize_text_field' ) );
+		register_setting( 'wpadami_markdown_settings', 'wpadami_markdown_post_types', array( 'sanitize_callback' => array( $this, 'sanitize_post_types' ) ) );
+		register_setting( 'wpadami_markdown_settings', 'wpadami_markdown_content_signal', array( 'sanitize_callback' => 'sanitize_text_field' ) );
 
-		if ( isset( $_GET['action'] ) && 'regenerate_markdown' === $_GET['action'] && isset( $_GET['_wpnonce'] ) && wp_verify_nonce( sanitize_key( $_GET['_wpnonce'] ), 'sa_ai_markdown_regenerate' ) ) {
-			$cron = new SA_AI_Markdown_Cron();
+		if ( isset( $_GET['action'] ) && 'regenerate_markdown' === $_GET['action'] && isset( $_GET['_wpnonce'] ) && wp_verify_nonce( sanitize_key( $_GET['_wpnonce'] ), 'wpadami_markdown_regenerate' ) ) {
+			$cron = new WPADAMI_AI_Markdown_Cron();
 			$cron->process_all_posts();
-			add_settings_error( 'sa_ai_markdown_messages', 'sa_ai_markdown_message', 'Markdown cache regeneration triggered!', 'updated' );
+			add_settings_error( 'wpadami_markdown_messages', 'wpadami_markdown_message', 'Markdown cache regeneration triggered!', 'updated' );
 		}
 	}
 
@@ -72,33 +71,33 @@ class SA_AI_Markdown_Settings {
 			return;
 		}
 
-		$selected_types = get_option( 'sa_ai_markdown_post_types', array( 'post', 'page' ) );
-		$content_signal = get_option( 'sa_ai_markdown_content_signal', 'ai-train=yes, search=yes, ai-input=yes' );
+		$selected_types = get_option( 'wpadami_markdown_post_types', array( 'post', 'page' ) );
+		$content_signal = get_option( 'wpadami_markdown_content_signal', 'ai-train=yes, search=yes, ai-input=yes' );
 		$all_post_types = get_post_types( array( 'public' => true ), 'objects' );
 
 		?>
 		<div class="wrap">
 			<h1>AI Markdown Settings</h1>
 			<form method="post" action="options.php">
-		<?php settings_fields( 'sa_ai_markdown_settings' ); ?>
-		<?php do_settings_sections( 'sa_ai_markdown_settings' ); ?>
+		<?php settings_fields( 'wpadami_markdown_settings' ); ?>
+		<?php do_settings_sections( 'wpadami_markdown_settings' ); ?>
 
 				<table class="form-table">
 					<tr valign="top">
 						<th scope="row">Enabled Post Types</th>
 						<td>
-		<?php foreach ( $all_post_types as $type ) : ?>
-								<label>
-									<input type="checkbox" name="sa_ai_markdown_post_types[]" value="<?php echo esc_attr( $type->name ); ?>" <?php checked( in_array( $type->name, (array) $selected_types, true ) ); ?>>
-			<?php echo esc_html( $type->label ); ?>
-								</label><br>
-		<?php endforeach; ?>
+				<?php foreach ( $all_post_types as $type ) : ?>
+							<label>
+								<input type="checkbox" name="wpadami_markdown_post_types[]" value="<?php echo esc_attr( $type->name ); ?>" <?php checked( in_array( $type->name, (array) $selected_types, true ) ); ?>>
+							<?php echo esc_html( $type->label ); ?>
+							</label><br>
+				<?php endforeach; ?>
 						</td>
 					</tr>
 					<tr valign="top">
 						<th scope="row">X-Content-Signal Extra</th>
 						<td>
-							<input type="text" name="sa_ai_markdown_content_signal" value="<?php echo esc_attr( $content_signal ); ?>" class="regular-text">
+							<input type="text" name="wpadami_markdown_content_signal" value="<?php echo esc_attr( $content_signal ); ?>" class="regular-text">
 							<p class="description">Additional signals to append to the X-Content-Signal header (e.g., <code>ai-train=yes, search=yes, ai-input=yes</code>).</p>
 						</td>
 					</tr>
@@ -111,7 +110,7 @@ class SA_AI_Markdown_Settings {
 
 			<h2>Manual Actions</h2>
 			<p>Click below to manually trigger the Markdown cache regeneration for all selected post types.</p>
-			<a href="<?php echo esc_url( wp_nonce_url( admin_url( 'options-general.php?page=sa-ai-markdown&action=regenerate_markdown' ), 'sa_ai_markdown_regenerate' ) ); ?>" class="button button-secondary">Regenerate Markdown Cache Now</a>
+			<a href="<?php echo esc_url( wp_nonce_url( admin_url( 'options-general.php?page=wpadami-markdown-negotiator&action=regenerate_markdown' ), 'wpadami_markdown_regenerate' ) ); ?>" class="button button-secondary">Regenerate Markdown Cache Now</a>
 		</div>
 		<?php
 	}
