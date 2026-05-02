@@ -33,11 +33,13 @@ require_once MARKDOWN_CONTENT_NEGOTIATOR_PATH . 'includes/class-markdown-content
 require_once MARKDOWN_CONTENT_NEGOTIATOR_PATH . 'includes/class-markdown-content-negotiator-for-llms-cron.php';
 require_once MARKDOWN_CONTENT_NEGOTIATOR_PATH . 'includes/class-markdown-content-negotiator-for-llms-negotiator.php';
 require_once MARKDOWN_CONTENT_NEGOTIATOR_PATH . 'includes/class-markdown-content-negotiator-for-llms-settings.php';
+require_once MARKDOWN_CONTENT_NEGOTIATOR_PATH . 'includes/class-markdown-content-negotiator-for-llms-disable-w3tc.php';
 
 /**
  * Initialize the plugin
  */
 function Markdown_Content_Negotiator_For_LLMs_init() {
+    new Markdown_Content_Negotiator_For_LLMs_Disable_W3tc();
 	new Markdown_Content_Negotiator_For_LLMs_Generator();
 	new Markdown_Content_Negotiator_For_LLMs_Cron();
 	new Markdown_Content_Negotiator_For_LLMs_Negotiator();
